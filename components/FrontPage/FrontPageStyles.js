@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
       
     },
     leftView : {
-      height: 752,
+      height: 540,
       width: 520,
       borderColor: '#D9D9D9',
       borderWidth: 1,
@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
     },
     newCard: {
       width:144, 
-      height:110,
+      height:'auto',
       borderColor:'#D9D9D9',
       borderWidth:1, 
       alignItems:'center',
