@@ -27,8 +27,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name='FrontPage' component={FrontPage} /> */}
-        <Stack.Screen name='NewCard' component={NewCard} />
+        <Stack.Screen name='FrontPage' component={FrontPage} />
+        {/* <Stack.Screen name='NewCard' component={NewCard} /> */}
         {/* <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} /> */}
         <Stack.Screen name='NetBankingOptions' component={NetBankingOptions} />
       </Stack.Navigator>

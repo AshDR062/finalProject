@@ -7,8 +7,9 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { useState } from 'react';
 import Svg, { Use, Image } from 'react-native-svg';
 import NewCard from './NewCard';
+import { ScrollView } from 'react-native-web';
 
-const FrontPage = (props) => {
+const FrontPage = () => {
 
   const netBankingOptions = ['Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank',]
 
@@ -21,7 +22,7 @@ const FrontPage = (props) => {
 
   const handleUPIOption = () => {
     // console.warn("Upi option is selected")
-    setIsUPICardSelected(true);
+    setIsUPICardSelected(!isUPICardSelected);
   }
 
   const handleNetBankOption = () => {
@@ -33,7 +34,7 @@ const FrontPage = (props) => {
       <View style={styles.leftView}>
 
         <View style={styles.listBox2}>
-          <View style={{ borderWidth: 2,flex:1, borderRadius: 8, justifyContent:'space-between',  padding:12}}>
+          <View style={{ borderWidth: 2, flex: 1, borderRadius: 8, justifyContent: 'space-between', marginLeft: 12, marginRight: 12, marginTop: 12, borderColor: '#D9D9D9' }}>
             {/* <View style={styles.listBox2Items}> */}
             <View style={styles.listBox2ItemsRows}>
               <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>Plan Selected:</Text>
@@ -56,115 +57,118 @@ const FrontPage = (props) => {
             {/* </View> */}
 
             {/* <View style={styles.listBox2Items}> */}
-            <View style={styles.listBox2ItemsRows}>
+            <View style={[styles.listBox2ItemsRows, { paddingBottom: 12 }]}>
               <Text style={{ fontWeight: 700, fontFamily: 'Noto Sans' }}>Total amount:</Text>
-              <Text style={{ fontWeight: 700, fontFamily: 'Noto Sans', }}>&#x20B9; 550</Text>
+              <Text style={{ fontWeight: 700, fontFamily: 'Noto Sans' }}>&#x20B9; 550</Text>
             </View>
             {/* </View> */}
           </View>
-<View style={{flex:3}}>
-          {/* <Text style={styles.headerBox}>Payment</Text> */}
-          <View style={styles.innerItem}>
-            <View>
-              <Text style={styles.headerItem}>Card</Text>
-              <TouchableOpacity
-                style={styles.newCard}>
-                {
-                  isNewCard ? <NewCard /> :
-                    <>
-                      <Svg width='32' height='32' style={styles.cards} >
-                        <Image href={require('/assets/payment/creditcard.svg')} />
-                      </Svg>
-                      <Text style={styles.newCardTitle}>Add New Card</Text>
-                    </>
-                }
+          <View style={{ flex: 3 }}>
+            {/* <Text style={styles.headerBox}>Payment</Text> */}
+            <View style={styles.innerItem}>
+              <View>
+                <Text style={styles.headerItem}>Card</Text>
+                <TouchableOpacity
+                  style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', alignItems: 'center' }]}>
+                  {
+                    isNewCard ? <NewCard /> :
+                      <>
+                        <Svg width='32' height='32' >
+                          <Image href={require('/assets/payment/creditcard.svg')} />
+                        </Svg>
+                        <Text style={styles.newCardTitle}>Add New Card</Text>
+                      </>
+                  }
 
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.innerItem}>
-            <View>
-              <Text style={styles.headerItem}>UPI</Text>
-              <View style={styles.cardsSectionUPI}>
-                <TouchableOpacity style={styles.upiCards} onPress={handleUPIOption}>
-                  <Svg width='32' height='32' style={styles.cards} >
-                    <Image href={require('/assets/payment/gpay.svg')} />
-
-                  </Svg>
-                  <Text style={styles.cardeTitle}>Google Pay</Text>
                 </TouchableOpacity>
-                <View>
-                  <TouchableOpacity style={styles.upiCards}>
-                    <Svg width='32' height='32' style={styles.cards} >
-                      <Image href={require('/assets/payment/phonepe.svg')} />
+              </View>
+            </View>
+            <View style={styles.innerItem}>
+              <View>
+                <Text style={styles.headerItem}>UPI</Text>
+                <View style={styles.cardsSectionUPI}>
+                  <TouchableOpacity style={styles.upiCards} onPress={handleUPIOption}>
+                    <Svg width='32' height='32' >
+                      <Image href={require('/assets/payment/gpay.svg')} />
 
                     </Svg>
-                    <Text style={styles.cardeTitle}>Phone Pay</Text>
+                    <Text style={styles.cardsTitle}>GPay</Text>
+                  </TouchableOpacity>
+                  <View>
+                    <TouchableOpacity style={styles.upiCards}>
+                      <Svg width='32' height='32' >
+                        <Image href={require('/assets/payment/phonepe.svg')} />
+
+                      </Svg>
+                      <Text style={styles.cardsTitle}>Phone Pay</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <TouchableOpacity style={styles.upiCards}>
+                    <Svg width='32' height='32' >
+                      <Image href={require('/assets/payment/upi.svg')} />
+
+                    </Svg>
+                    <Text style={styles.cardsTitle}>UPI</Text>
                   </TouchableOpacity>
                 </View>
-                <TouchableOpacity style={styles.upiCards}>
-                  <Svg width='32' height='32' style={styles.cards} >
-                    <Image href={require('/assets/payment/upi.svg')} />
-
-                  </Svg>
-                  <Text style={styles.cardeTitle}>UPI</Text>
-                </TouchableOpacity>
+                {
+                  isUPICardSelected ?
+                    <><Text>UPI ID </Text>
+                      <View style={{ flex: 1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9' }}>
+                        <TextInput placeholder='Enter your UPI ID' />
+                        <TouchableWithoutFeedback style={styles.upiCards} onPress={handleUPIOption}>
+                          <Svg >{/*width='18' height= '18' */}
+                            <Image href={require('/assets/payment/qrcode.png')} style={{ height: 18, width: 18 }} />
+                          </Svg>
+                        </TouchableWithoutFeedback>
+                      </View></> :
+                    null
+                }
               </View>
-              {
-                isUPICardSelected ?
-                  <><Text>UPI ID </Text>
-                    <View style={{ flex: 1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9' }}>
-                      <TextInput placeholder='Enter your UPI ID' />
-                      <TouchableWithoutFeedback style={styles.upiCards} onPress={handleUPIOption}>
-                        <Svg style={styles.cards} >{/*width='18' height= '18' */}
-                          <Image href={require('/assets/payment/qrcode.png')} style={{ height: 18, width: 18 }} />
-                        </Svg>
-                      </TouchableWithoutFeedback>
-                    </View></> :
-                  null
-              }
             </View>
-          </View>
-          <View style={styles.innerItem}>
-            <View>
-              <View style={{flexDirection: 'row', justifyContent:'space-between', alignItems: 'flex-end'}}>
-                <Text style={styles.headerItem}>Net Banking &#x27A4;</Text>
-                <TouchableOpacity><Text style={{color:'#000E14'}}> Show All</Text></TouchableOpacity>
-              </View>
-              <View style={styles.cardsSectionNet}>
-                <TouchableOpacity style={styles.netCards}>
-                  <Svg width='32' height='32' style={styles.cards} >
-                    <Image href={require('/assets/payment/icici.svg')} />
+            <View style={styles.innerItem}>
+              <View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 12 }}>
+                  <Text style={styles.headerItem}>Net Banking</Text>
+                  <TouchableOpacity><Text style={{ color: '#000E14' }}> View All  &#x27A4;</Text></TouchableOpacity>
+                </View>
+                <View style={styles.cardsSectionNet}>
+                  <TouchableOpacity style={styles.netCards}>
+                    <Svg width='32' height='32'>
+                      <Image href={require('/assets/payment/icici.svg')} />
 
-                  </Svg>
-                  <Text style={styles.cardeTitle}>ICICI</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.netCards}>
-                  <Svg width='32' height='32' style={styles.cards} >
-                    <Image href={require('/assets/payment/sbi.svg')} />
+                    </Svg>
+                    <Text style={styles.cardsTitle}>ICICI</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.netCards}>
+                    <Svg width='32' height='32' >
+                      <Image href={require('/assets/payment/sbi.svg')} />
 
-                  </Svg>
-                  <Text style={styles.cardeTitle}>SBI</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.netCards}>
-                  <Svg width='32' height='32' style={styles.cards} >
-                    <Image href={require('/assets/payment/hdfc.svg')} />
+                    </Svg>
+                    <Text style={styles.cardsTitle}>SBI</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.netCards}>
+                    <Svg width='32' height='32' >
+                      <Image href={require('/assets/payment/hdfc.svg')} />
 
-                  </Svg>
-                  <Text style={styles.cardeTitle}>HDFC</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.netCards}>
-                  <Svg width='32' height='32' style={styles.cards} >
-                    <Image href={require('/assets/payment/axis.svg')} />
+                    </Svg>
+                    <Text style={styles.cardsTitle}>HDFC</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.netCards}>
+                    <Svg width='32' height='32' >
+                      <Image href={require('/assets/payment/axis.svg')} />
 
-                  </Svg>
-                  <Text style={styles.cardeTitle}>AXIS</Text>
-                </TouchableOpacity>
+                    </Svg>
+                    <Text style={styles.cardsTitle}>AXIS</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
         </View>
-</View>
+        <View style={{ flexDirection: 'row', alignItems: 'center' , marginLeft:12,marginRight:12,}}>
+          <View style={{ flex: 1, height: 1, backgroundColor: '#d9d9d9', shadowColor: "#000000",shadowOpacity: 0.8,shadowRadius: 2,shadowOffset:{height:1,width:1}}} />
+        </View>
         <View>
           <TouchableOpacity style={styles.proceedBtn}>
             <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
@@ -220,20 +224,21 @@ const styles = StyleSheet.create({
   // },
   innerItem: {
     flex: 1,
-    // borderBottomWidth: 1,
-    // borderBottomColor: '#D9D9D9',
-    marginTop: 24,
-    marginLeft: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D9D9D9',
+    marginTop: 12,
+    marginLeft: 12,
+    marginRight: 12
     // paddingLeft: 1,
     // paddingRight: 24,
 
 
   },
   headerItem: {
-    fontSize: 20,
+    fontSize: 12,
     fontWeight: 700,
     fontFamily: 'Noto Sans',
-    // marginBottom: 16
+    // marginBottom: 12
   },
   headerBox: {
     fontSize: 20,
@@ -242,7 +247,7 @@ const styles = StyleSheet.create({
   },
   listBox2: {
     flexDirection: 'column',
-    flex:1
+    flex: 1
   },
   listBox2Items: {
     // marginTop: 24,
@@ -253,9 +258,11 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    textAlign: 'justify'
+    textAlign: 'justify',
+    paddingLeft: 12, paddingTop: 12, paddingRight: 12,
   },
   proceedBtn: {
+    margin: 12,
     fontSize: 16,
     height: 46,
     fontWeight: 700,
@@ -271,8 +278,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cards: {
-    Left: 31,
-    paddingBottom: 5
+    // Left: 31,
+    // paddingBottom: 5
 
   },
 
@@ -281,10 +288,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardsSectionUPI: {
-    // width: 340,
+    width: "74%",
     flexDirection: 'row',
     flex: 1,
-    alignContent: 'space-between',
+    // alignContent: 'left',
     justifyContent: 'space-between'
   },
   cardsSectionNet: {
@@ -295,7 +302,7 @@ const styles = StyleSheet.create({
 
 
   },
-  cardeTitle: {
+  cardsTitle: {
     fontSize: 14,
     fontWeight: 400,
     marginTop: 8,
@@ -318,8 +325,8 @@ const styles = StyleSheet.create({
 
   },
   newCard: {
-    width: 130,
-    height: 'auto',
+    width: 100,
+    height: '120',
     borderColor: '#D9D9D9',
     borderWidth: 1,
     alignItems: 'center',
@@ -336,8 +343,10 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     // paddingBottom: 22,  
     borderRadius: 8,
-    margin: 1,
-    marginLeft: 'inerit'
+    alignContent: 'space-between',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+    marginTop: 12
   },
   netCards: {
     // width:90,
@@ -350,7 +359,6 @@ const styles = StyleSheet.create({
     // paddingBottom: 22,  
     borderRadius: 8,
     // flex:1,
-    margin: 1,
     alignItems: 'center'
   },
 });

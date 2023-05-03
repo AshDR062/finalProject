@@ -1,4 +1,4 @@
-const netBankingOptions = ['Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank','Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank',]
+const netBankingOptions = ['Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank', 'Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank',]
 
 import React from 'react'
 import { StyleSheet } from 'react-native'
@@ -20,15 +20,15 @@ const NetBankingOptions = () => {
                 }}
             />
             <View>
-        <TouchableOpacity style={styles.proceedBtn}>
-          <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
-        </TouchableOpacity>
-      </View>
+                <TouchableOpacity style={styles.proceedBtn}>
+                    <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
 const styles = StyleSheet.create({
-    proceedBtn : {
+    proceedBtn: {
         fontSize: 16,
         height: 46,
         fontWeight: 700,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#0259DB',
         alignItems: 'center',
-      }
+    }
 })
 
 export default NetBankingOptions
