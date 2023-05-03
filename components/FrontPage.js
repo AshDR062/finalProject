@@ -1,13 +1,12 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, TextInput } from 'react-native';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button , ScrollView} from 'react-native';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 // import { styles } from './FrontPageStyles';
 import { useState } from 'react';
 import Svg, { Use, Image } from 'react-native-svg';
 import NewCard from './NewCard';
-import { ScrollView } from 'react-native-web';
 
 const FrontPage = () => {
 
@@ -69,7 +68,7 @@ const FrontPage = () => {
               <View>
                 <Text style={styles.headerItem}>Card</Text>
                 <TouchableOpacity
-                  style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', alignItems: 'center' }]}>
+                  style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', textAlign:'center' }]}>
                   {
                     isNewCard ? <NewCard /> :
                       <>
@@ -90,20 +89,18 @@ const FrontPage = () => {
                   <TouchableOpacity style={styles.upiCards} onPress={handleUPIOption}>
                     <Svg width='32' height='32' >
                       <Image href={require('/assets/payment/gpay.svg')} />
-
                     </Svg>
                     <Text style={styles.cardsTitle}>GPay</Text>
                   </TouchableOpacity>
                   <View>
-                    <TouchableOpacity style={styles.upiCards}>
+                    <TouchableOpacity style={styles.upiCards} onPress={handleUPIOption}>
                       <Svg width='32' height='32' >
                         <Image href={require('/assets/payment/phonepe.svg')} />
-
                       </Svg>
                       <Text style={styles.cardsTitle}>Phone Pay</Text>
                     </TouchableOpacity>
                   </View>
-                  <TouchableOpacity style={styles.upiCards}>
+                  <TouchableOpacity style={styles.upiCards} onPress={handleUPIOption}>
                     <Svg width='32' height='32' >
                       <Image href={require('/assets/payment/upi.svg')} />
 
@@ -113,15 +110,17 @@ const FrontPage = () => {
                 </View>
                 {
                   isUPICardSelected ?
-                    <><Text>UPI ID </Text>
-                      <View style={{ flex: 1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9' }}>
+                    <>
+                      <Text>UPI ID </Text>
+                      <View style={{ flex: 1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9', paddingBottom:12 }}>
                         <TextInput placeholder='Enter your UPI ID' />
                         <TouchableWithoutFeedback style={styles.upiCards} onPress={handleUPIOption}>
                           <Svg >{/*width='18' height= '18' */}
                             <Image href={require('/assets/payment/qrcode.png')} style={{ height: 18, width: 18 }} />
                           </Svg>
                         </TouchableWithoutFeedback>
-                      </View></> :
+                      </View>
+                    </> :
                     null
                 }
               </View>
@@ -166,8 +165,8 @@ const FrontPage = () => {
             </View>
           </View>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' , marginLeft:12,marginRight:12,}}>
-          <View style={{ flex: 1, height: 1, backgroundColor: '#d9d9d9', shadowColor: "#000000",shadowOpacity: 0.8,shadowRadius: 2,shadowOffset:{height:1,width:1}}} />
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 12, marginRight: 12, }}>
+          <View style={{ flex: 1, height: 1, backgroundColor: '#d9d9d9', shadowColor: "#000000", shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 } }} />
         </View>
         <View>
           <TouchableOpacity style={styles.proceedBtn}>
@@ -189,7 +188,8 @@ const styles = StyleSheet.create({
     // backgroundColor: '#FFFFFF',
     // justifyContent: 'space-between',
     display: 'flex',
-    gap: 24,
+    // gap: 24,,
+    height:'100%'
 
   },
   leftView: {
