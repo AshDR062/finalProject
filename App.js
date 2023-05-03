@@ -23,14 +23,15 @@ import { createStackNavigator } from '@react-navigation/stack'; //Insert screens
 
 const App = () => {
   // const Stack = createNativeStackNavigator(); 
-  const Stack = createStackNavigator();
+  const Stack = createNativeStackNavigator();
+  
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen name='FrontPage' component={FrontPage} /> */}
-        {/* <Stack.Screen name='NewCard' component={NewCard} /> */}
-        {/* <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} /> */}
-        <Stack.Screen name='NetBankingOptions' component={NetBankingOptions} />
+      <Stack.Navigator initialRouteName='FrontPage'>
+        <Stack.Screen name='FrontPage' component={FrontPage} options={{title: 'Payment'}}/>
+        <Stack.Screen name='NewCard' component={NewCard} options={{title: 'Payment'}}/> 
+        <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} options={{title: 'Payment'}}/>
+        <Stack.Screen name='NetBankingOptions' component={NetBankingOptions} options={{title: 'Payment'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

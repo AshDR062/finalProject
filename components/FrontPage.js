@@ -7,8 +7,10 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { useState } from 'react';
 import Svg, { Use, Image } from 'react-native-svg';
 import NewCard from './NewCard';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const FrontPage = () => {
+const FrontPage = ({navigation}) => {
 
   const netBankingOptions = ['Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank',]
 
@@ -67,7 +69,7 @@ const FrontPage = () => {
             <View style={styles.innerItem}>
               <View>
                 <Text style={styles.headerItem}>Card</Text>
-                <TouchableOpacity
+                <TouchableOpacity onPress={({navigation})=>navigation.navigate('NewCard')}
                   style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', textAlign:'center' }]}>
                   {
                     isNewCard ? <NewCard /> :

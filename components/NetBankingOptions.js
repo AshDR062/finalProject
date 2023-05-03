@@ -6,7 +6,7 @@ import { FlatList, View, Text, ScrollView } from 'react-native-web'
 import { TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 
-const NetBankingOptions = (props) => {
+const NetBankingOptions = (navigation) => {
 
     const [isSelected, setIsSelected] = useState(1);
 
@@ -57,7 +57,7 @@ const NetBankingOptions = (props) => {
 }
 const styles = StyleSheet.create({
     main: {
-        Height: '100%',
+        // Height: '100%',
         flex: 1,
         marginLeft:12
     },

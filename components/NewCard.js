@@ -4,7 +4,11 @@ import { StyleSheet, Text, View, TextInput, CheckBox, Button, SafeAreaView } fro
 import { TouchableOpacity } from 'react-native-web';
 // import { styles } from './FrontPage/FrontPageStyles';
 import Svg, { Use, Image } from 'react-native-svg';
-const NewCard = () => {
+
+
+
+
+const NewCard = (navigation) => {
     const [isSelected, setSelection] = useState(true);
     const [isCardRegistered, setIsCardRegistered] = useState(false);
     const [isAccepting, setIsAccepting] = useState(true);
@@ -28,44 +32,50 @@ const NewCard = () => {
         <SafeAreaView>
 
             <View style={{ margin: 16, justifyContent: 'space-between' }}>
-                    <View style={{justifyContent:'space-between'}}>
-                        <Text style={[styles.allInnerItems,]}>Card Number</Text>
-                        <TextInput placeholder='Please enter the card number' style={[styles.inputText, styles.allInnerItems,]} />
-                        <Text style={styles.allInnerItems}>Card Name on Card</Text>
-                        <TextInput placeholder='Please enter name on the card' style={[styles.inputText, styles.allInnerItems]} />
-                        <View style={{ flexDirection: 'row', alignContent: 'space-between', justifyContent: 'space-between' }}>
-                            <View style={{ flex: 1, marginRight: 10 }}>
-                                <Text style={styles.allInnerItems}>Card Number</Text>
-                                <TextInput placeholder='MM/YY' style={[styles.inputText, styles.allInnerItems]} />
-                            </View>
-                            <View style={{ flex: 1, marginLeft: 10 }}>
-
-                                <View style={{ flexDirection: 'row', paddingRight: 30, marginBottom: 10 }}>
-                                    <Text>CVV</Text><Text>Image</Text>
-                                </View>
-                                <TextInput placeholder='Enter CVV' secureTextEntry='numeric' maxLength={3} style={[styles.inputText, styles.allInnerItems]} />
-
-                            </View>
+                <View style={{ justifyContent: 'space-between' }}>
+                    <Text style={[styles.allInnerItems,]}>Card Number</Text>
+                    <TextInput placeholder='Please enter the card number' style={[styles.inputText, styles.allInnerItems,]} />
+                    <Text style={styles.allInnerItems}>Card Name on Card</Text>
+                    <TextInput placeholder='Please enter name on the card' style={[styles.inputText, styles.allInnerItems]} />
+                    <View style={{ flexDirection: 'row', alignContent: 'space-between', justifyContent: 'space-between' }}>
+                        <View style={{ flex: 1, marginRight: 10 }}>
+                            <Text style={styles.allInnerItems}>Card Number</Text>
+                            <TextInput placeholder='MM/YY' style={[styles.inputText, styles.allInnerItems]} />
                         </View>
+                        <View style={{ flex: 1, marginLeft: 10 }}>
 
-                        <View style={styles.checkboxContainer}>
-                            <CheckBox
-                                value={isSelected}
-                                onValueChange={setSelection}
-                                style={styles.checkbox}
-                            />
-                            <Text style={styles.label}>Securely save this card for future use </Text>
-                            <Svg width='32' height='32' style={styles.cards} >
-                                <Image />
-                                {/* <Image href={require('E:\FULLSTACKDEVELOPER\React Native\rempo-main\rempo-main\app\assets\svg\image_black.svg')}/> */}
-                            </Svg>
+                            <View style={{ flexDirection: 'row', paddingRight: 30, marginBottom: 10 }}>
+                                <Text>CVV</Text><Text>Image</Text>
+                            </View>
+                            <TextInput placeholder='Enter CVV' secureTextEntry='numeric' maxLength={3} style={[styles.inputText, styles.allInnerItems]} />
+
                         </View>
                     </View>
-                    <View style={{ padding: 16, borderColor: '#000', shadowOpacity: 0.5, shadowRadius: 5, elevation: 2}}>
-                        <TouchableOpacity style={styles.proceedBtn}>
-                            <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
-                        </TouchableOpacity>
+
+                    <View style={styles.checkboxContainer}>
+                        <CheckBox
+                            value={isSelected}
+                            onValueChange={setSelection}
+                            style={styles.checkbox}
+                        />
+                        <Text style={styles.label}>Securely save this card for future use </Text>
+                        <Svg width='32' height='32' style={styles.cards} >
+                            <Image />
+                            {/* <Image href={require('E:\FULLSTACKDEVELOPER\React Native\rempo-main\rempo-main\app\assets\svg\image_black.svg')}/> */}
+                        </Svg>
                     </View>
+                </View>
+                <View>
+                    <View style={{flexDirection: 'row', alignItems: 'center', }}>
+                        <View style={{ 
+                            flex: 1, height: 1, backgroundColor: '#d9d9d9', 
+                            shadowColor: "#000000", shadowOpacity: 0.8, 
+                            shadowRadius: 2, shadowOffset: { height: 1, width: 1 } }} />
+                    </View>
+                    <TouchableOpacity style={styles.proceedBtn}>
+                        <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
+                    </TouchableOpacity>
+                </View>
 
 
             </View>
