@@ -12,7 +12,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const FrontPage = ({navigation}) => {
 
-  const netBankingOptions = ['Indusind Bank', 'City Union Bank', 'Sate Bank of Hydrabad', 'Syndicate Bank', 'Corporation Bank', 'Canera Bank', 'Saraswat Co-operative Bank', 'SBI', 'ICICI', 'HDFC', 'Saraswat Bank',]
 
   const [isNewCard, setIsNewCard] = useState(false);
   const [isUPICardSelected, setIsUPICardSelected] = useState(false);
@@ -33,39 +32,75 @@ const FrontPage = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftView}>
-
         <View style={styles.listBox2}>
-          <View style={{ borderWidth: 2, flex: 1, borderRadius: 8, justifyContent: 'space-between', marginLeft: 12, marginRight: 12, marginTop: 12, borderColor: '#D9D9D9' }}>
-            {/* <View style={styles.listBox2Items}> */}
+          <View style={{ 
+            borderWidth: 2, 
+            flex: 1, 
+            borderRadius: 8, 
+            justifyContent: 'space-between', 
+            marginLeft: 12, marginRight: 12, 
+            marginTop: 12, 
+            borderColor: '#D9D9D9' }}>
             <View style={styles.listBox2ItemsRows}>
-              <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>Plan Selected:</Text>
-              <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>Plan 1</Text>
+              <Text style={{ 
+                fontWeight: 400, 
+                fontFamily: 'Noto Sans' }}>
+                Plan Selected:
+              </Text>
+              <Text style={{ 
+                fontWeight: 400, 
+                fontFamily: 'Noto Sans' }}>
+                Plan 1
+              </Text>
             </View>
             {/* </View> */}
 
             <View style={styles.listBox2Items} />
             <View style={styles.listBox2ItemsRows}>
-              <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>Payment Amount:</Text>
-              <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>&#x20B9; 500</Text>
+              <Text style={{ 
+                fontWeight: 400, 
+                fontFamily: 'Noto Sans' }}>
+                Payment Amount:
+              </Text>
+              <Text style={{ 
+                fontWeight: 400, 
+                fontFamily: 'Noto Sans' }}>
+                &#x20B9; 500
+              </Text>
             </View>
             {/* </View> */}
 
             {/* <View style={styles.listBox2Items}> */}
             <View style={styles.listBox2ItemsRows}>
-              <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>GST: </Text>
-              <Text style={{ fontWeight: 400, fontFamily: 'Noto Sans' }}>&#x20B9; 50</Text>
+              <Text style={{ 
+                fontWeight: 400, 
+                fontFamily: 'Noto Sans' }}>
+                GST: 
+                </Text>
+              <Text style={{ 
+                fontWeight: 400, 
+                fontFamily: 'Noto Sans' }}>
+                &#x20B9; 50
+              </Text>
             </View>
             {/* </View> */}
 
             {/* <View style={styles.listBox2Items}> */}
             <View style={[styles.listBox2ItemsRows, { paddingBottom: 12 }]}>
-              <Text style={{ fontWeight: 700, fontFamily: 'Noto Sans' }}>Total amount:</Text>
-              <Text style={{ fontWeight: 700, fontFamily: 'Noto Sans' }}>&#x20B9; 550</Text>
+              <Text style={{ 
+                fontWeight: 700, 
+                fontFamily: 'Noto Sans' }}>
+                Total amount:
+              </Text>
+              <Text style={{ 
+                fontWeight: 700, 
+                fontFamily: 'Noto Sans' }}>
+                &#x20B9; 550
+              </Text>
             </View>
             {/* </View> */}
           </View>
           <View style={{ flex: 3 }}>
-            {/* <Text style={styles.headerBox}>Payment</Text> */}
             <View style={styles.innerItem}>
               <View>
                 <Text style={styles.headerItem}>Card</Text>
@@ -114,7 +149,7 @@ const FrontPage = ({navigation}) => {
                   isUPICardSelected ?
                     <>
                       <Text>UPI ID </Text>
-                      <View style={{ flex: 1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9', paddingBottom:12 }}>
+                      <View style={{ position:'absolute',zIndex:1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9', paddingBottom:12 }}>
                         <TextInput placeholder='Enter your UPI ID' />
                         <TouchableWithoutFeedback style={styles.upiCards} onPress={handleUPIOption}>
                           <Svg >{/*width='18' height= '18' */}

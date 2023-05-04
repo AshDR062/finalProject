@@ -11,7 +11,6 @@ const NetBankingOptions = (navigation) => {
     const [isSelected, setIsSelected] = useState(1);
 
     return (
-        <View>
             <View>
                 <ScrollView style={styles.main}>
                     {
@@ -52,7 +51,7 @@ const NetBankingOptions = (navigation) => {
                     </View>
                 </View>
             </View>
-        </View>
+        
     )
 }
 const styles = StyleSheet.create({
@@ -99,7 +98,8 @@ const styles = StyleSheet.create({
         height: 10,
         width: 10,
         borderRadius: 5,
-        margin: 1.6
+        margin: 1,
+        backfaceVisibility:'hidden'
     }
 })
 

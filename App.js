@@ -5,10 +5,10 @@ import { TouchableOpacity } from 'react-native-web';
 
 import Svg, { Use, Image } from 'react-native-svg';
 import FrontPage from './components/FrontPage';
-import { useState } from 'react';
 
 
 import React from 'react'
+import { useState } from 'react';
 import TransferUPIPage from './components/TransferUPIPage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,19 +19,17 @@ import NewCard from './components/NewCard';
 import { createStackNavigator } from '@react-navigation/stack'; //Insert screens into a stack
 
 
-
-
 const App = () => {
-  // const Stack = createNativeStackNavigator(); 
   const Stack = createNativeStackNavigator();
-  
+
+ 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='FrontPage'>
-        <Stack.Screen name='FrontPage' component={FrontPage} options={{title: 'Payment'}}/>
-        <Stack.Screen name='NewCard' component={NewCard} options={{title: 'Payment'}}/> 
-        <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} options={{title: 'Payment'}}/>
-        <Stack.Screen name='NetBankingOptions' component={NetBankingOptions} options={{title: 'Payment'}}/>
+         <Stack.Screen name='FrontPage' component={FrontPage} options={{title: 'Payment'}}/>
+        {/*<Stack.Screen name='NewCard' component={NewCard} options={{title: 'Payment'}}/> 
+        <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} options={{title: 'Payment'}}/>  */}
+        {/* <Stack.Screen name='NetBankingOptions' component={NetBankingOptions} options={{title: 'Payment'}}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   )
