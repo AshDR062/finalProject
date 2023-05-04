@@ -26,9 +26,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='FrontPage'>
-         <Stack.Screen name='FrontPage' component={FrontPage} options={{title: 'Payment'}}/>
-        {/*<Stack.Screen name='NewCard' component={NewCard} options={{title: 'Payment'}}/> 
-        <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} options={{title: 'Payment'}}/>  */}
+       <Stack.Screen name='FrontPage' component={FrontPage} options={{title: 'Payment'}}/>
+       {/* <Stack.Screen name='NewCard' component={NewCard} options={{title: 'Payment'}}/>  */}
+        {/* <Stack.Screen name='TranferUPIPage' component={TransferUPIPage} options={{title: 'Payment'}}/>  */} 
         {/* <Stack.Screen name='NetBankingOptions' component={NetBankingOptions} options={{title: 'Payment'}}/> */}
       </Stack.Navigator>
     </NavigationContainer>

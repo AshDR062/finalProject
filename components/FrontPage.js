@@ -1,7 +1,7 @@
 import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, TextInput } from 'react-native';
-import { StyleSheet, Text, View, Button , ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 // import { styles } from './FrontPageStyles';
 import { useState } from 'react';
@@ -10,9 +10,9 @@ import NewCard from './NewCard';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const FrontPage = ({navigation}) => {
+const FrontPage = ({ navigation }) => {
 
-
+  const [isAccepting, setIsAccepting] = useState(false);
   const [isNewCard, setIsNewCard] = useState(false);
   const [isUPICardSelected, setIsUPICardSelected] = useState(false);
 
@@ -33,38 +33,43 @@ const FrontPage = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.leftView}>
         <View style={styles.listBox2}>
-          <View style={{ 
-            borderWidth: 2, 
-            flex: 1, 
-            borderRadius: 8, 
-            justifyContent: 'space-between', 
-            marginLeft: 12, marginRight: 12, 
-            marginTop: 12, 
-            borderColor: '#D9D9D9' }}>
+          <View style={{
+            borderWidth: 1,
+            // flex: 1, 
+            borderRadius: 8,
+            // justifyContent: 'space-between', 
+            // marginLeft: 12, marginRight: 12, 
+            marginTop: 12,
+            borderColor: '#D9D9D9'
+          }}>
             <View style={styles.listBox2ItemsRows}>
-              <Text style={{ 
-                fontWeight: 400, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 400,
+                fontFamily: 'Noto Sans'
+              }}>
                 Plan Selected:
               </Text>
-              <Text style={{ 
-                fontWeight: 400, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 400,
+                fontFamily: 'Noto Sans'
+              }}>
                 Plan 1
               </Text>
             </View>
             {/* </View> */}
 
-            <View style={styles.listBox2Items} />
+            <View />
             <View style={styles.listBox2ItemsRows}>
-              <Text style={{ 
-                fontWeight: 400, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 400,
+                fontFamily: 'Noto Sans'
+              }}>
                 Payment Amount:
               </Text>
-              <Text style={{ 
-                fontWeight: 400, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 400,
+                fontFamily: 'Noto Sans'
+              }}>
                 &#x20B9; 500
               </Text>
             </View>
@@ -72,14 +77,16 @@ const FrontPage = ({navigation}) => {
 
             {/* <View style={styles.listBox2Items}> */}
             <View style={styles.listBox2ItemsRows}>
-              <Text style={{ 
-                fontWeight: 400, 
-                fontFamily: 'Noto Sans' }}>
-                GST: 
-                </Text>
-              <Text style={{ 
-                fontWeight: 400, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 400,
+                fontFamily: 'Noto Sans'
+              }}>
+                GST:
+              </Text>
+              <Text style={{
+                fontWeight: 400,
+                fontFamily: 'Noto Sans'
+              }}>
                 &#x20B9; 50
               </Text>
             </View>
@@ -87,14 +94,16 @@ const FrontPage = ({navigation}) => {
 
             {/* <View style={styles.listBox2Items}> */}
             <View style={[styles.listBox2ItemsRows, { paddingBottom: 12 }]}>
-              <Text style={{ 
-                fontWeight: 700, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 700,
+                fontFamily: 'Noto Sans'
+              }}>
                 Total amount:
               </Text>
-              <Text style={{ 
-                fontWeight: 700, 
-                fontFamily: 'Noto Sans' }}>
+              <Text style={{
+                fontWeight: 700,
+                fontFamily: 'Noto Sans'
+              }}>
                 &#x20B9; 550
               </Text>
             </View>
@@ -103,9 +112,12 @@ const FrontPage = ({navigation}) => {
           <View style={{ flex: 3 }}>
             <View style={styles.innerItem}>
               <View>
-                <Text style={styles.headerItem}>Card</Text>
-                <TouchableOpacity onPress={({navigation})=>navigation.navigate('NewCard')}
-                  style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', textAlign:'center' }]}>
+                <Text
+                  style={styles.headerItem}>
+                  Card
+                </Text>
+                <TouchableOpacity onPress={({ navigation }) => navigation.navigate('NewCard')}
+                  style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', textAlign: 'center' }]}>
                   {
                     isNewCard ? <NewCard /> :
                       <>
@@ -115,11 +127,14 @@ const FrontPage = ({navigation}) => {
                         <Text style={styles.newCardTitle}>Add New Card</Text>
                       </>
                   }
-
                 </TouchableOpacity>
+
               </View>
             </View>
-            <View style={styles.innerItem}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+              <View style={styles.thinbreakLine} />
+            </View>
+            <View style={[styles.innerItem, {marginBottom:-1}]}>
               <View>
                 <Text style={styles.headerItem}>UPI</Text>
                 <View style={styles.cardsSectionUPI}>
@@ -145,26 +160,31 @@ const FrontPage = ({navigation}) => {
                     <Text style={styles.cardsTitle}>UPI</Text>
                   </TouchableOpacity>
                 </View>
-                {
-                  isUPICardSelected ?
-                    <>
-                      <Text>UPI ID </Text>
-                      <View style={{ position:'absolute',zIndex:1, flexDirection: 'row', borderWidth: 1, borderColor: '#D9D9D9', paddingBottom:12 }}>
-                        <TextInput placeholder='Enter your UPI ID' />
-                        <TouchableWithoutFeedback style={styles.upiCards} onPress={handleUPIOption}>
-                          <Svg >{/*width='18' height= '18' */}
-                            <Image href={require('/assets/payment/qrcode.png')} style={{ height: 18, width: 18 }} />
-                          </Svg>
-                        </TouchableWithoutFeedback>
-                      </View>
-                    </> :
-                    null
-                }
+
               </View>
+
+            </View>
+            {
+              isUPICardSelected ?
+                <>
+                  <Text>UPI ID </Text>
+                  <View style={styles.upiInputText}>
+                    <TextInput placeholder='Enter your UPI ID' style={{paddingLeft:5,marginRight:12, borderWidth:1, borderColor: 'D9D9D9', height:25, width:'75%'}} />
+                    <TouchableWithoutFeedback style={styles.upiInputTextQRCode} onPress={handleUPIOption}>
+                      <Svg width='25' height='25'>
+                        <Image href={require('/assets/payment/qrcode.png')} style={{ height: 25, width: 25 }} />
+                      </Svg>
+                    </TouchableWithoutFeedback>
+                  </View>
+                </> :
+                null
+            }
+            <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+              <View style={styles.thinbreakLine} />
             </View>
             <View style={styles.innerItem}>
               <View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 12 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', }}>
                   <Text style={styles.headerItem}>Net Banking</Text>
                   <TouchableOpacity><Text style={{ color: '#000E14' }}> View All  &#x27A4;</Text></TouchableOpacity>
                 </View>
@@ -197,14 +217,17 @@ const FrontPage = ({navigation}) => {
                     </Svg>
                     <Text style={styles.cardsTitle}>AXIS</Text>
                   </TouchableOpacity>
+
                 </View>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                <View style={[styles.thinbreakLine,]} />
               </View>
             </View>
           </View>
+
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 12, marginRight: 12, }}>
-          <View style={{ flex: 1, height: 1, backgroundColor: '#d9d9d9', shadowColor: "#000000", shadowOpacity: 0.8, shadowRadius: 2, shadowOffset: { height: 1, width: 1 } }} />
-        </View>
+
         <View>
           <TouchableOpacity style={styles.proceedBtn}>
             <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
@@ -218,30 +241,14 @@ const FrontPage = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
     flexDirection: 'column',
-    // backgroundColor: '#FFFFFF',
-    // justifyContent: 'space-between',
     display: 'flex',
-    // gap: 24,,
-    height:'100%'
 
   },
   leftView: {
-    // height: 540,
-    // width: 520,
-    // borderColor: '#D9D9D9',
-    // borderWidth: 1,
-    // backgroundColor: '#FFFFFF',
     flexDirection: 'column',
-    // borderRadius: 8,
-    // alignItems: 'flex-start'
-    // marginLeft: 150,
-    // marginTop: 164,
-    // marginRight: 740,
-    // marginBottom: 512,
+    marginLeft: 12,
+    marginRight: 12,
     display: 'flex',
   },
   // rightView: {
@@ -261,21 +268,15 @@ const styles = StyleSheet.create({
   // },
   innerItem: {
     flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: '#D9D9D9',
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#D9D9D9',
     marginTop: 12,
-    marginLeft: 12,
-    marginRight: 12
-    // paddingLeft: 1,
-    // paddingRight: 24,
-
-
+    marginBottom: 12
   },
   headerItem: {
     fontSize: 12,
     fontWeight: 700,
     fontFamily: 'Noto Sans',
-    // marginBottom: 12
   },
   headerBox: {
     fontSize: 20,
@@ -284,7 +285,8 @@ const styles = StyleSheet.create({
   },
   listBox2: {
     flexDirection: 'column',
-    flex: 1
+    flex: 1,
+    position: 'relative'
   },
   listBox2Items: {
     // marginTop: 24,
@@ -296,20 +298,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     textAlign: 'justify',
-    paddingLeft: 12, paddingTop: 12, paddingRight: 12,
+    paddingLeft: 12,
+    paddingTop: 12,
+    paddingRight: 12,
   },
   proceedBtn: {
-    margin: 12,
     fontSize: 16,
     height: 46,
     fontWeight: 700,
-    top: 11,
-    // left: 24,
     paddingTop: 11,
-    // paddingLeft: 22,      
-    paddingBottom: 11,
-    // marginLeft: 24,
-    // marginRight: 24,
+    marginBottom: 12,
     borderRadius: 8,
     backgroundColor: '#0259DB',
     alignItems: 'center',
@@ -328,13 +326,13 @@ const styles = StyleSheet.create({
     width: "74%",
     flexDirection: 'row',
     flex: 1,
-    // alignContent: 'left',
     justifyContent: 'space-between'
   },
   cardsSectionNet: {
+    marginTop: 12,
     flexDirection: 'row',
     flex: 1,
-    alignContent: 'space-between',
+    alignContent: 'center',
     justifyContent: 'space-between'
 
 
@@ -343,22 +341,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 400,
     marginTop: 8,
-    // marginBottom: 6,
-    bottom: 6,
-    // height: 22,
-    // width: 22,
-    // padding:22
+    marginBottom: 6,
 
   },
   newCardTitle: {
     fontSize: 14,
     fontWeight: 400,
     marginTop: 16,
-    // marginBottom: 6,
     bottom: 6,
-    // height: 22,
-    // width: 22,
-    // padding:22
 
   },
   newCard: {
@@ -368,17 +358,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     paddingTop: 16,
-    // paddingBottom: 22, 
     borderRadius: 8
   },
   upiCards: {
-    width: 84,
+    width: 74,
     height: 90,
     borderColor: '#D9D9D9',
     borderWidth: 1,
     alignItems: 'center',
     paddingTop: 16,
-    // paddingBottom: 22,  
+    marginRight: 12,  
     borderRadius: 8,
     alignContent: 'space-between',
     justifyContent: 'space-between',
@@ -386,18 +375,37 @@ const styles = StyleSheet.create({
     marginTop: 12
   },
   netCards: {
-    // width:90,
-    height: 90,
-    width: 84,
+    width:74,
+    height: 80,
     borderColor: '#D9D9D9',
     borderWidth: 1,
     alignItems: 'center',
     paddingTop: 16,
-    // paddingBottom: 22,  
+    marginRight: 12,  
     borderRadius: 8,
     // flex:1,
     alignItems: 'center'
   },
+  thinbreakLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#d9d9d9',
+    shadowColor: "#000000",
+    shadowOpacity: 0.8,
+    marginTop: 12
+  },
+  upiInputText:
+  {
+    marginTop: 3,
+    position: 'relative',
+    flexDirection: 'row',
+    postion: 'relative',
+    width: '100vw'
+  }
+  ,
+  upiInputTextQRCode: {
+    position: 'relative',
+  }
 });
 
 export default FrontPage

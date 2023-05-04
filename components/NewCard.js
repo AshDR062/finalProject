@@ -4,19 +4,54 @@ import { StyleSheet, Text, View, TextInput, CheckBox, Button, SafeAreaView } fro
 import { TouchableOpacity } from 'react-native-web';
 // import { styles } from './FrontPage/FrontPageStyles';
 import Svg, { Use, Image } from 'react-native-svg';
-import onChangeTxtCardNumber from '../assets/utils/validateCardNumber';
 
 
 
 const NewCard = (navigation) => {
     const [isSelected, setSelection] = useState(true);
     const [isCardRegistered, setIsCardRegistered] = useState(false);
-    const [isAccepting, setIsAccepting] = useState(true);
+    const [isAccepting, setIsAccepting] = useState(false);
     const [isUPIClicked, setIsUPIClicked] = useState(false);
 
     const [cardNum, setCardNum] = useState(0);
     const [nameOnCard, setNameOnCard] = useState("A");
     const [expiryDt, setExpiryDt] = useState("");
+    const [isValidCardNum, setIsValidCardNum] = useState(true);
+
+    const [isCardNumEditable, setIsCardNumEditable] = useState(true)
+
+    const onChangeTxtCardNumber = (txtCardNumber) => {
+
+       
+
+        txtCardNumber =  txtCardNumber.replace(/[^0-9]/g, '')
+        var cardNumber = txtCardNumber.toString();
+        
+          // Do not allow users to write invalid characters
+        var formattedCardNumber = cardNumber.replace(/[^\d]/g, "");
+        formattedCardNumber = formattedCardNumber.substring(0, 16);
+
+
+        
+        // Split the card number is groups of 4
+        var cardNumberSections = formattedCardNumber.match(/\d{1,4}/g);
+        if (cardNumberSections !== null) {
+            formattedCardNumber = cardNumberSections.join('-');
+        if (formattedCardNumber.length > 19 ) {
+            setIsCardNumEditable(false)
+        }else{setIsCardNumEditable(true)};
+
+        }
+    
+        // console.log(`'${cardNumber}' to '${formattedCardNumber}`);
+    
+        // If the formmattedCardNumber is different to what is shown, change the value
+        if (cardNumber !== formattedCardNumber) {
+            txtCardNumber = formattedCardNumber;
+            setCardNum(txtCardNumber);
+            return txtCardNumber;
+        }
+    }
 
     const cardInfo = [
         { 
@@ -37,17 +72,21 @@ const NewCard = (navigation) => {
         // <View><Text style={{fontSize:2100}}>Hi</Text></View>
         <SafeAreaView>
 
-            <View style={{ margin: 16, justifyContent: 'space-between' }}>
+            <View style={{ margin: 16, justifyContent: 'space-between', Height:'100vw' }}>
                 <View style={{ justifyContent: 'space-between' }}>
                     <Text style={[styles.allInnerItems,]}>Card Number</Text>
                     
                     <TextInput
-                        placeholder='xxxx-xxxx-xxxx-xxxx'
+                        onChangeText={(text)=>onChangeTxtCardNumber(text)}
+                        placeholder='xxxx-xxxx-xxxx-xxxx' 
+                        keyboardType='numeric'
                         style={[styles.inputText, styles.allInnerItems,]}
-
                     />
+                    {
+                        !isAccepting ? <Text style={{color:'red', marginBottom:12}}>Visa Cards are not accepting payments request at this time. Please select another payment method</Text>: !isValidCardNum ? <Text  style={{color:'red'}}>Enter Valid Card Number</Text>:null 
+                    }
                     
-                    <Text style={styles.allInnerItems}>Card Name on Card</Text>
+                    <Text style={styles.allInnerItems}>Name on Card</Text>
                     
                     <TextInput placeholder='Please enter name on the card' style={[styles.inputText, styles.allInnerItems]} />
                     
@@ -62,7 +101,7 @@ const NewCard = (navigation) => {
                                 <Text>CVV</Text><Text>Image {console.log(cardInfo)}</Text>
                             </View>
                             
-                            <TextInput placeholder='Enter CVV' secureTextEntry='numeric' maxLength={3} style={[styles.inputText, styles.allInnerItems]} />
+                            <TextInput keyboardType='numeric' placeholder='Enter CVV' secureTextEntry='numeric' maxLength={3} style={[styles.inputText, styles.allInnerItems]} />
                         </View>
                     </View>
 
@@ -87,8 +126,8 @@ const NewCard = (navigation) => {
                             shadowRadius: 2, shadowOffset: { height: 1, width: 1 }
                         }} />
                     </View>
-                    <TouchableOpacity style={styles.proceedBtn}>
-                        <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
+                    <TouchableOpacity onPress={()=>{}} style={styles.proceedBtn}>
+                        <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700}}>Proceed to pay</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -149,6 +188,10 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#0259DB',
         alignItems: 'center',
+        right:0,
+        left:0,
+        position: 'absolute',
+        bottom: 0
     }
 })
 

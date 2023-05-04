@@ -5,7 +5,7 @@
 
 
 const onChangeTxtCardNumber = (txtCardNumber) => {
-    var cardNumber = txtCardNumber.value;
+    var cardNumber = txtCardNumber.toString();
 
       // Do not allow users to write invalid characters
     var formattedCardNumber = cardNumber.replace(/[^\d]/g, "");
@@ -24,5 +24,4 @@ const onChangeTxtCardNumber = (txtCardNumber) => {
         txtCardNumber.value = formattedCardNumber;
     }
 }
-
-export default onChangeTxtCardNumber;
+onChangeTxtCardNumber(5156987423654789);
