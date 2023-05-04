@@ -21,7 +21,7 @@ const onChangeTxtCardNumber = (txtCardNumber) => {
 
     // If the formmattedCardNumber is different to what is shown, change the value
     if (cardNumber !== formattedCardNumber) {
-        txtCardNumber.value = formattedCardNumber;
+        txtCardNumber = formattedCardNumber;
     }
 }
-onChangeTxtCardNumber(5156987423654789);
+onChangeTxtCardNumber(5156987423654789458);
