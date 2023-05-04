@@ -12,9 +12,20 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const FrontPage = ({ navigation }) => {
 
+  const [isSelected, setIsSelected] = useState(1);
+  const [isAvailable, setIsAvailable] = useState(true);
   const [isAccepting, setIsAccepting] = useState(false);
   const [isNewCard, setIsNewCard] = useState(false);
   const [isUPICardSelected, setIsUPICardSelected] = useState(false);
+
+  const cardsInfo = [
+    {
+      cardNum: "1234-5698-7456-3210",
+    },
+    {
+      cardNum: "9874-5698-7456-3210",
+    },
+  ]
 
   const handleNewCreditCard = () => {
     setIsNewCard(true)
@@ -111,30 +122,59 @@ const FrontPage = ({ navigation }) => {
           </View>
           <View style={{ flex: 3 }}>
             <View style={styles.innerItem}>
-              <View>
-                <Text
-                  style={styles.headerItem}>
-                  Card
-                </Text>
-                <TouchableOpacity onPress={({ navigation }) => navigation.navigate('NewCard')}
-                  style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', textAlign: 'center' }]}>
-                  {
-                    isNewCard ? <NewCard /> :
-                      <>
-                        <Svg width='32' height='32' >
-                          <Image href={require('/assets/payment/creditcard.svg')} />
-                        </Svg>
-                        <Text style={styles.newCardTitle}>Add New Card</Text>
-                      </>
-                  }
-                </TouchableOpacity>
+              {
+                !isAvailable ?
+                  <View>
+                    <Text
+                      style={styles.headerItem}>
+                      Card
+                    </Text>
+                    <TouchableOpacity onPress={({ navigation }) => navigation.navigate('NewCard')}
+                      style={[styles.newCard, { marginBottom: 12, marginTop: 12, width: '20%', textAlign: 'center' }]}>
+                      {
+                        isNewCard ? <NewCard /> :
+                          <>
+                            <Svg width='32' height='32' >
+                              <Image href={require('/assets/payment/creditcard.svg')} />
+                            </Svg>
+                            <Text style={styles.newCardTitle}>Add New Card</Text>
+                          </>
+                      }
+                    </TouchableOpacity>
 
-              </View>
+                  </View> :
+                  <View style={styles.main}>
+                    {
+                      cardsInfo.map((item, index) => <TouchableOpacity key={index} onPress={() => setIsSelected(item.cardNum)}>
+                        <View style={[styles.radioWrapper, { marginBottom: 12 }]}>
+                          <View style={styles.radio}>
+                            {
+                              isSelected === item.cardNum ? <View style={styles.radioBG}></View> : null
+                            }
+                          </View>
+                          <Text style={[styles.radioText, {
+                            color: '#000E14',
+                            fontWeight: 400,
+                            fontSize: 14
+                          }]}>{item.cardNum}</Text>
+
+                        </View>
+                      </TouchableOpacity>)
+                    }
+                    <TouchableOpacity style={{
+                      color: '#1C4EF0',
+                      fontWeight: 700,
+                      fontSize: 14
+                    }}>
+                      + Add new card
+                    </TouchableOpacity>
+                  </View>
+              }
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', }}>
               <View style={styles.thinbreakLine} />
             </View>
-            <View style={[styles.innerItem, {marginBottom:-1}]}>
+            <View style={[styles.innerItem, { marginBottom: -1 }]}>
               <View>
                 <Text style={styles.headerItem}>UPI</Text>
                 <View style={styles.cardsSectionUPI}>
@@ -169,7 +209,7 @@ const FrontPage = ({ navigation }) => {
                 <>
                   <Text>UPI ID </Text>
                   <View style={styles.upiInputText}>
-                    <TextInput placeholder='Enter your UPI ID' style={{paddingLeft:5,marginRight:12, borderWidth:1, borderColor: 'D9D9D9', height:25, width:'75%'}} />
+                    <TextInput placeholder='Enter your UPI ID' style={{ paddingLeft: 5, marginRight: 12, borderWidth: 1, borderColor: 'D9D9D9', height: 25, width: '75%' }} />
                     <TouchableWithoutFeedback style={styles.upiInputTextQRCode} onPress={handleUPIOption}>
                       <Svg width='25' height='25'>
                         <Image href={require('/assets/payment/qrcode.png')} style={{ height: 25, width: 25 }} />
@@ -367,7 +407,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     paddingTop: 16,
-    marginRight: 12,  
+    marginRight: 12,
     borderRadius: 8,
     alignContent: 'space-between',
     justifyContent: 'space-between',
@@ -375,13 +415,13 @@ const styles = StyleSheet.create({
     marginTop: 12
   },
   netCards: {
-    width:74,
+    width: 74,
     height: 80,
     borderColor: '#D9D9D9',
     borderWidth: 1,
     alignItems: 'center',
     paddingTop: 16,
-    marginRight: 12,  
+    marginRight: 12,
     borderRadius: 8,
     // flex:1,
     alignItems: 'center'
@@ -405,6 +445,35 @@ const styles = StyleSheet.create({
   ,
   upiInputTextQRCode: {
     position: 'relative',
+  },
+  main: {
+    // Height: '100%',
+    flex: 1,
+    marginLeft: 12
+  },
+  radioText: {
+
+  },
+  radio: {
+    height: 16,
+    width: 16,
+    borderColor: '#5F9EA0',
+    borderWidth: 2,
+    borderRadius: 8,
+    margin: 6
+  },
+  radioWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+
+  },
+  radioBG: {
+    backgroundColor: 'blue',
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    margin: 1,
+    backfaceVisibility: 'hidden'
   }
 });
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, CheckBox, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, CheckBox, Button, SafeAreaView, TouchableHighlight } from 'react-native';
 import { TouchableOpacity } from 'react-native-web';
 // import { styles } from './FrontPage/FrontPageStyles';
 import Svg, { Use, Image } from 'react-native-svg';
@@ -22,44 +22,46 @@ const NewCard = (navigation) => {
 
     const onChangeTxtCardNumber = (txtCardNumber) => {
 
-       
 
-        txtCardNumber =  txtCardNumber.replace(/[^0-9]/g, '')
+
+        txtCardNumber = txtCardNumber.replace(/[^0-9]/g, '')
         var cardNumber = txtCardNumber.toString();
-        
-          // Do not allow users to write invalid characters
+
+        // Do not allow users to write invalid characters
         var formattedCardNumber = cardNumber.replace(/[^\d]/g, "");
         formattedCardNumber = formattedCardNumber.substring(0, 16);
 
 
-        
+
         // Split the card number is groups of 4
         var cardNumberSections = formattedCardNumber.match(/\d{1,4}/g);
         if (cardNumberSections !== null) {
             formattedCardNumber = cardNumberSections.join('-');
-        if (formattedCardNumber.length > 19 ) {
-            setIsCardNumEditable(false)
-        }else{setIsCardNumEditable(true)};
+            if (formattedCardNumber.length > 19) {
+                setIsCardNumEditable(false)
+            } else { setIsCardNumEditable(true) };
 
         }
-    
+
         // console.log(`'${cardNumber}' to '${formattedCardNumber}`);
-    
+
         // If the formmattedCardNumber is different to what is shown, change the value
         if (cardNumber !== formattedCardNumber) {
             txtCardNumber = formattedCardNumber;
             setCardNum(txtCardNumber);
             return txtCardNumber;
         }
-    }
+    };
+
+
 
     const cardInfo = [
-        { 
-            cardNumber: cardNum ,
+        {
+            cardNumber: cardNum,
             name: nameOnCard,
-            expireDate: expiryDt 
+            expireDate: expiryDt
         },
-    ]
+    ];
 
     // const _handlingCardNumber = (number) => {
     //     setCardNumber({
@@ -72,35 +74,42 @@ const NewCard = (navigation) => {
         // <View><Text style={{fontSize:2100}}>Hi</Text></View>
         <SafeAreaView>
 
-            <View style={{ margin: 16, justifyContent: 'space-between', Height:'100vw' }}>
+            <View style={{ margin: 16, justifyContent: 'space-between', Height: '100vw' }}>
                 <View style={{ justifyContent: 'space-between' }}>
                     <Text style={[styles.allInnerItems,]}>Card Number</Text>
-                    
+
                     <TextInput
-                        onChangeText={(text)=>onChangeTxtCardNumber(text)}
-                        placeholder='xxxx-xxxx-xxxx-xxxx' 
+                        onChangeText={(text) => onChangeTxtCardNumber(text)}
+                        placeholder='xxxx-xxxx-xxxx-xxxx'
                         keyboardType='numeric'
                         style={[styles.inputText, styles.allInnerItems,]}
                     />
                     {
-                        !isAccepting ? <Text style={{color:'red', marginBottom:12}}>Visa Cards are not accepting payments request at this time. Please select another payment method</Text>: !isValidCardNum ? <Text  style={{color:'red'}}>Enter Valid Card Number</Text>:null 
+                        !isAccepting ? <Text style={{ color: 'red', marginBottom: 12 }}>Visa Cards are not accepting payments request at this time. Please select another payment method</Text> : !isValidCardNum ? <Text style={{ color: 'red' }}>Enter Valid Card Number</Text> : null
                     }
-                    
+
                     <Text style={styles.allInnerItems}>Name on Card</Text>
-                    
+
                     <TextInput placeholder='Please enter name on the card' style={[styles.inputText, styles.allInnerItems]} />
-                    
+
                     <View style={{ flexDirection: 'row', alignContent: 'space-between', justifyContent: 'space-between' }}>
                         <View style={{ flex: 1, marginRight: 10 }}>
-                            <Text style={styles.allInnerItems}>Card Number</Text>
-                            <TextInput placeholder='MM/YY' style={[styles.inputText, styles.allInnerItems]} />
+                            <Text style={styles.allInnerItems}>Expiry Date</Text>
+                            <TextInput onChangeText={(text) => { cc_expires_format }} keyboardType='numeric' placeholder='MM/YY' style={[styles.inputText, styles.allInnerItems]} />
                         </View>
-                    
+
                         <View style={{ flex: 1, marginLeft: 10 }}>
                             <View style={{ flexDirection: 'row', paddingRight: 30, marginBottom: 10 }}>
-                                <Text>CVV</Text><Text>Image {console.log(cardInfo)}</Text>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <Text>CVV</Text>
+                                    <TouchableOpacity>
+                                    <Svg width='20' height='20' style={{paddingLeft:8}}>
+                                        <Image href={require('/assets/payment/icons8-info.svg')} style={{height:20, width:20, }}/>
+                                    </Svg>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                            
+
                             <TextInput keyboardType='numeric' placeholder='Enter CVV' secureTextEntry='numeric' maxLength={3} style={[styles.inputText, styles.allInnerItems]} />
                         </View>
                     </View>
@@ -111,11 +120,10 @@ const NewCard = (navigation) => {
                             onValueChange={setSelection}
                             style={styles.checkbox}
                         />
-                        <Text style={styles.label}>Securely save this card for future use </Text>
-                        <Svg width='32' height='32' style={styles.cards} >
-                            <Image />
-                            {/* <Image href={require('E:\FULLSTACKDEVELOPER\React Native\rempo-main\rempo-main\app\assets\svg\image_black.svg')}/> */}
-                        </Svg>
+                        <View style={{flexDirection:'row'}}><Text style={styles.label}>Securely save this card for future use </Text></View>
+                        <TouchableHighlight><Svg width='20' height='20' style={{paddingTop:8}}>
+                                        <Image href={require('/assets/payment/icons8-info.svg')} style={{height:20, width:20, }}/>
+                                    </Svg></TouchableHighlight>
                     </View>
                 </View>
                 <View>
@@ -126,9 +134,9 @@ const NewCard = (navigation) => {
                             shadowRadius: 2, shadowOffset: { height: 1, width: 1 }
                         }} />
                     </View>
-                    <TouchableOpacity onPress={()=>{}} style={styles.proceedBtn}>
-                        <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700}}>Proceed to pay</Text>
-                    </TouchableOpacity>
+                    <TouchableHighlight onPress={() => { }} style={styles.proceedBtn}>
+                        <Text style={{ textAlignVertical: 'center', color: '#FFFFFF', fontSize: 16, fontWeight: 700 }}>Proceed to pay</Text>
+                    </TouchableHighlight>
                 </View>
 
 
@@ -188,8 +196,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: '#0259DB',
         alignItems: 'center',
-        right:0,
-        left:0,
+        right: 0,
+        left: 0,
         position: 'absolute',
         bottom: 0
     }
