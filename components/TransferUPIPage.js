@@ -3,16 +3,15 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const TransferUPIPage = ({navigation}) => {
+const TransferUPIPage = ({ navigation }) => {
   let amount = 1756;
   let receipantUPIid = "Ramkrushna@okicici";
   let senderUPIid = "upi.rzp@hdfcbank";
 
-// Automatic trasfering from "TransferUPIPage" to "QRCodePage"
+  // Automatic trasfering from "TransferUPIPage" to "QRCodePage"
   setTimeout(() => {
-    navigation.navigate("QRCodePage")
+    navigation.navigate("QRCodePage");
   }, 2000);
-
 
   return (
     <View

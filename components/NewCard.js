@@ -14,7 +14,7 @@ import { TouchableOpacity } from "react-native-web";
 // import { styles } from './FrontPage/FrontPageStyles';
 import Svg, { Use, Image } from "react-native-svg";
 
-const NewCard = ({navigation}) => {
+const NewCard = ({ navigation }) => {
   const [isSelected, setSelection] = useState(true);
   const [isCardRegistered, setIsCardRegistered] = useState(false);
   const [isAccepting, setIsAccepting] = useState(false);
@@ -186,7 +186,12 @@ const NewCard = ({navigation}) => {
               }}
             />
           </View>
-          <TouchableHighlight onPress={() => {navigation.navigate("FrontPage")}} style={styles.proceedBtn}>
+          <TouchableHighlight
+            onPress={() => {
+              navigation.navigate("FrontPage");
+            }}
+            style={styles.proceedBtn}
+          >
             <Text
               style={{
                 textAlignVertical: "center",
@@ -204,7 +209,6 @@ const NewCard = ({navigation}) => {
   );
 };
 const styles = StyleSheet.create({
-
   allInnerItems: {
     marginBottom: 10,
   },
@@ -221,9 +225,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: 20,
   },
-  container: {
-
-  },
+  container: {},
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,
@@ -256,4 +258,3 @@ const styles = StyleSheet.create({
 });
 
 export default NewCard;
-

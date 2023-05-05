@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Svg, { Image } from "react-native-svg";
 
-const QRCodePage = ({navigation}) => {
+const QRCodePage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.leftView}>
@@ -123,19 +123,24 @@ const QRCodePage = ({navigation}) => {
             <View style={[styles.thinbreakLine]} />
           </View>
           <View>
-          <TouchableOpacity  onPress={()=>{navigation.navigate("FrontPage")}} style={styles.proceedBtn}>
-            <Text
-              style={{
-                textAlignVertical: "center",
-                color: "#FFFFFF",
-                fontSize: 16,
-                fontWeight: 700,
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("FrontPage");
               }}
+              style={styles.proceedBtn}
             >
-              Proceed to pay
-            </Text>
-          </TouchableOpacity>
-        </View>
+              <Text
+                style={{
+                  textAlignVertical: "center",
+                  color: "#FFFFFF",
+                  fontSize: 16,
+                  fontWeight: 700,
+                }}
+              >
+                Proceed to pay
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

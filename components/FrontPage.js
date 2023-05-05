@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import { TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 // import { styles } from './FrontPageStyles';
 import { useState } from "react";
-import Svg, {  Image } from "react-native-svg";
+import Svg, { Image } from "react-native-svg";
 import NewCard from "./NewCard";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -260,12 +260,14 @@ const FrontPage = ({ navigation }) => {
                       borderColor: "#D9D9D9",
                       height: 30,
                       width: "75%",
-                      borderRadius:8
+                      borderRadius: 8,
                     }}
                   />
                   <TouchableWithoutFeedback
                     style={styles.upiInputTextQRCode}
-                    onPress={()=>{navigation.navigate("TranferUPIPage")}}
+                    onPress={() => {
+                      navigation.navigate("TranferUPIPage");
+                    }}
                   >
                     <Svg width="30" height="30">
                       <Image
@@ -290,7 +292,11 @@ const FrontPage = ({ navigation }) => {
                   }}
                 >
                   <Text style={styles.headerItem}>Net Banking</Text>
-                  <TouchableOpacity onPress={()=>{navigation.navigate("NetBankingOptions")}}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("NetBankingOptions");
+                    }}
+                  >
                     <Text style={{ color: "#000E14" }}> View All &#x27A4;</Text>
                   </TouchableOpacity>
                 </View>
@@ -322,13 +328,12 @@ const FrontPage = ({ navigation }) => {
                 </View>
               </View>
               <View>
-                { 
-                  !isAccepting ? 
-                  <Text  style={{ color: "red", marginBottom: 12 }}>
-                  ICICI ban net banking is currently not accepting payment request. Please try another option.
-                </Text>
-                : null 
-                } 
+                {!isAccepting ? (
+                  <Text style={{ color: "red", marginBottom: 12 }}>
+                    ICICI ban net banking is currently not accepting payment
+                    request. Please try another option.
+                  </Text>
+                ) : null}
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <View style={[styles.thinbreakLine]} />
@@ -338,7 +343,12 @@ const FrontPage = ({ navigation }) => {
         </View>
 
         <View>
-          <TouchableOpacity onPress={()=>{navigation.navigate("TranferUPIPage")}}  style={styles.proceedBtn}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("TranferUPIPage");
+            }}
+            style={styles.proceedBtn}
+          >
             <Text
               style={{
                 textAlignVertical: "center",
@@ -356,7 +366,6 @@ const FrontPage = ({ navigation }) => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -369,7 +378,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
     display: "flex",
   },
-  
+
   innerItem: {
     flex: 1,
     marginTop: 12,
@@ -390,9 +399,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
   },
-  listBox2Items: {
-  
-  },
+  listBox2Items: {},
   listBox2ItemsRows: {
     flexWrap: "wrap",
     flexDirection: "row",
@@ -412,9 +419,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#0259DB",
     alignItems: "center",
   },
-  cards: {
-    
-  },
+  cards: {},
 
   cardsSection: {
     flexDirection: "row",
